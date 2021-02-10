@@ -3,17 +3,17 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-void print(int your_array[], int i);
+void show_array(int your_array[], int i); // change the name of the function (clean code goal)
 int main(void)
 {
     int init_number = 0, base;
-    // allocate a memory of 20*4 = 80 BYTE in HEAP segement of the memory 
+    // allocate a memory of 20*4 = 80 BYTE in HEAP segement of the memory
     int *new_number = (int*) malloc(20 * sizeof(int));
 
     // input initial decimal number
     scanf("%d", &init_number);
 
-    // input the base of numbers system you want to convert to (2/4/16)
+    // input the base of numbers system you want to convert to (2/8/16)
     do
     {
         printf("you want to convert to : 2 binary / 8 octal / 16 hexa-decimal\n");
@@ -34,7 +34,7 @@ int main(void)
                 quotient/=2;
                 i++;
             }
-            print(new_number, i);
+            show_array(new_number, i);
         break;
 
         case 8:
@@ -44,7 +44,7 @@ int main(void)
                 quotient/=8;
                 i++;
             }
-            print(new_number, i);
+            show_array(new_number, i);
         break;
 
         case 16:
@@ -54,19 +54,19 @@ int main(void)
                 quotient/=16;
                 i++;
             }
-            print(new_number, i);
+            show_array(new_number, i);
         break;
 
         default:
             printf("blabla`\n");
         break;
     }
-
-    return 0;
-    // de-allocate the heap memory
+        // de-allocate the heap memory before the return statement is reached (else the heap's allocated memory stays)
     free(new_number);
+    return 0;
+
 }
-void print(int your_array[], int i)
+void show_array(int your_array[], int i)
 {
     for(i ; i >= 0 ; i--)
     {
